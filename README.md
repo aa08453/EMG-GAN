@@ -26,7 +26,9 @@ The model is currently configured for receiving as input a 400-point window of f
 
 You can change the configurations for the Generator and Discriminator on configuration.json file
 
-Use one of the following, depending on your use case
+To run the GAN on your own data, modify the "training_file" argument in the configuration.json file. Depending on the columns of your csv, you'll need to modify the "features" argument as well. 
+
+Use one of the following, depending on your use case:
 ```
 python generate.py
 python train.py

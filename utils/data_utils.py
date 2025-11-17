@@ -31,15 +31,18 @@ class DataLoader():
         #Get moving windows samples
         X_windows = self.get_windows(values,self.num_steps)
         data = np.array(X_windows)
+        # print(f'og data shape = {data.shape}')
         filter_size = round(data.shape[0] * self.train_split)
         data = data[0:filter_size]
-        
+        # print(f'filtered data shape = {data.shape}')
         return data
     
     def load_timeseries(self, filename, series):
         #Load time series dataset
-        loaded_series = pd.read_csv(filename, sep=',', header=0, index_col=0, squeeze=True)
+        loaded_series = pd.read_csv(filename, sep=',', header=0, index_col=None, squeeze=True)
     
+        loaded_series = loaded_series.iloc[:100000]
+
         #Applying filter on the selected series
         selected_series = loaded_series.filter(items=series)
     
@@ -68,7 +71,10 @@ class DataLoader():
     
     def get_training_batch(self):
         x_train = self.load_training_data()
+        # print(f'x_train shape = {x_train.shape}')
         idx = np.random.randint(0, x_train.shape[0], self.batch_size)
+        # print(f'idx shape = {idx.shape}')
         signals = x_train[idx]
+        # print(f'signals shape b4 err = {signals.shape}')
         signals = np.reshape(signals, (signals.shape[0],signals.shape[1],self.channels))
         return signals

@@ -7,8 +7,8 @@
 
 	"learning_rate": 0.0002,
 
-	"training_file": "./data/pd_patient_1_emg.csv",
-	"features": ["FLEXOR_EMG_FILTERED"],
+	"training_file": "./utils/ninapro_db2_emg.csv",
+	"features": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"],
 	"rescale": true,
 
 	"conv_activation": "relu",
@@ -27,7 +27,7 @@
 
 	"sample_interval": 1000,
 	"epochs": 5000,
-	"batch_size": 100,
+	"batch_size": 100, 
 	"save_sample": false,
 	"plot_losses": false,
 	"save_models": false
